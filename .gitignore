@@ -1,0 +1,17 @@
+*.aux
+
+*.bcf
+
+*.log
+
+*.toc
+
+*.run.xml
+
+*.bbl
+
+*.blg
+
+*.synctex.gz
+
+main.pdf

@@ -87,6 +87,8 @@
         "*.fdb_latexmk"
     ],
     "latex-workshop.latex.autoClean.run": "onFailed",
-    "latex-workshop.latex.recipe.default": "lastUsed",
+    "latex-workshop.latex.recipe.default": "xelatex->biber->xelatex*2",
+    // more conventional use for default recipe
+    // "latex-workshop.latex.recipe.default": "lastUsed", 
     "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click"
 }
