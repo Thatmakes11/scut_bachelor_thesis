@@ -1,0 +1,38 @@
+\thispagestyle{empty}
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=.8\textwidth]{figs/logo.jpg}
+    \label{fig:logo}
+\end{figure}
+
+{\heiti \zihao{0} \centerline{\ 本科毕业设计（论文）}}
+
+\makeatletter
+\renewcommand{\maketitle}{
+    \begin{center}
+        \heiti \zihao{2}\bfseries{\@title}
+    \end{center}
+}
+\makeatother
+
+\vfill
+\maketitle
+\vfill
+
+\begin{table}[!b]
+    \centering
+    \begin{spacing}{1.6}
+        \tabcolsep=0.5cm
+        \begin{tabular}{>{\zihao{-3}\heiti}l>{\zihao{-3}\heiti}c}
+            \makebox[4em]{\textbf{学\qquad 院}} & \underline{\makebox[10em][c]{\school}} \\
+            \makebox[4em]{专\qquad 业} & \underline{\makebox[10em][c]{\major}} \\
+            \makebox[4em]{学生姓名} & \underline{\makebox[10em][c]{\authorname}} \\
+            \makebox[4em]{学生学号} & \underline{\makebox[10em][c]{\studentid}} \\
+            \makebox[4em]{指导教师} & \underline{\makebox[10em][c]{\tutor}} \\
+            \makebox[4em]{完成日期} & \underline{\makebox[10em][c]{\submitdate}} \\
+        \end{tabular}
+    \end{spacing}
+\end{table}
+
+\newpage

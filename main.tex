@@ -1,0 +1,163 @@
+\documentclass[UTF8, twoside, 12pt]{ctexart}
+
+% Packages
+
+\usepackage{graphicx, fancyhdr, subfigure, enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage{setspace, parskip}
+\usepackage{fontspec, xeCJK}
+\usepackage{titlesec, titletoc}
+\usepackage[subfigure]{tocloft}
+\usepackage{amsmath}
+\usepackage{caption, tabularx, array, etoolbox}
+\usepackage[backend=biber, style=numeric, maxnames=3, minnames=3]{biblatex}
+\addbibresource{contents/references.bib}
+
+
+% document class settings
+
+\geometry{
+  left=72pt,
+  right=72pt,
+  bindingoffset=0cm
+}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}[block]{\zihao{-4}\heiti}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{\baselineskip}{0pt}
+
+\renewcommand\theparagraph{\thesubsubsection.\arabic{paragraph}}
+
+
+% reference settings
+\AtEveryCite{\fontsize{12}{14}\selectfont}
+
+\DeclareCiteCommand{\supercite}[\mkbibsuperscript]
+  {\iffieldundef{prenote}
+     {}
+     {\BibliographyWarning{Ignoring prenote argument}}%
+   \iffieldundef{postnote}
+     {}
+     {\BibliographyWarning{Ignoring postnote argument}}%
+   \bibopenbracket}%
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {\supercitedelim}
+  {\bibclosebracket}
+
+
+% table of contents settings
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecfont}{\heiti}
+\renewcommand{\cftsecpagefont}{\songti}
+\renewcommand{\contentsname}{\hfill \heiti 目录 \hfill}
+
+
+% title settings
+\titleformat{\section}[block]
+{\centering\fontsize{18pt}{16pt}\heiti}
+{第\chinese{section}章\hspace{1em}}
+{0pt}
+{\vspace{0.5\baselineskip}\hspace{-0.5em}}
+\titlespacing{\section}{0pt}{0.5\baselineskip}{0.5\baselineskip}
+
+\renewcommand{\sectionmark}[1]{\markboth{第\chinese{section}章\hspace{0.5em}#1}{}}
+
+\ctexset {
+    section = {
+        name = {第,章},
+        number = \chinese{section},
+    }
+}
+
+
+% subsection settings
+\titleformat{\subsection}
+{\bfseries\fontsize{15pt}{12pt}\heiti}
+{\normalfont\thesubsection}{0.5em}{}
+\titlespacing{\subsection}{0pt}{0.5\baselineskip}{0.5\baselineskip}
+
+
+% subsubsection settings
+\titleformat{\subsubsection}
+{\bfseries\fontsize{14pt}{12pt}\heiti}
+{\normalfont\thesubsubsection}{0.5em}{}
+
+
+% paragraph indent settings
+\setlength{\parindent}{2em}
+
+
+% font settings
+\setmainfont{Times New Roman}
+\setCJKmainfont{SimSun}
+
+
+% page head and foot settings
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+
+\fancyhead[CO]{\leftmark}
+\fancyhead[CE]{华南理工大学学士学位论文}
+
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setlength{\headheight}{14.5pt}
+
+
+% equation settings
+\numberwithin{equation}{section}
+
+
+% table settings
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\renewcommand{\arraystretch}{2}
+\tabcolsep=1cm
+
+\DeclareCaptionFont{tablefontsize}{\fontsize{10.5pt}{12.6pt}\selectfont}
+\AtBeginEnvironment{tabular}{\fontsize{10.5pt}{12.6pt}\selectfont}
+\captionsetup[table]{font={tablefontsize}}
+\captionsetup[table]{labelsep=space}
+
+
+% figure settings
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\captionsetup[figure]{font={tablefontsize}}
+\captionsetup[figure]{labelsep=space}
+\renewcommand\thesubfigure{\alph{subfigure})}
+
+
+
+\begin{document}
+
+\title{基于Transformer的人物交互检测方法研究}
+\author{Sun Chang}
+\date{\today}
+
+\newcommand{\authorname}{Your name}
+\newcommand{\school}{Your school}
+\newcommand{\major}{Your major}
+\newcommand{\studentid}{Your student id}
+\newcommand{\tutor}{Your tutor}
+\newcommand{\submitdate}{2024年\ 05月\ 00日}
+
+\input{contents/cover.tex}
+\input{contents/statement.tex}
+\input{contents/abstract.tex}
+\input{contents/tableofcontents.tex}
+
+\input{contents/body/chap1_introduction.tex}
+\input{contents/body/chap2_basics.tex}
+\input{contents/body/chap3_algorithms.tex}
+\input{contents/body/chap4_experiments.tex}
+\input{contents/body/conclusion.tex}
+
+\printbibliography[title={参考文献}]
+\addcontentsline{toc}{section}{参考文献}
+\newpage
+
+\input{contents/acknowledgements.tex}
+
+\end{document}
