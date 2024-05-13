@@ -3,25 +3,40 @@
 % Packages
 
 \usepackage{graphicx, fancyhdr, subfigure, enumitem}
-\usepackage[bottom=3cm]{geometry}
+\usepackage[a4paper, bottom=25mm]{geometry}
 \usepackage{setspace, parskip}
-\usepackage{fontspec, xeCJK}
+\usepackage{xeCJK}
+\usepackage[no-math]{fontspec}
 \usepackage{titlesec, titletoc}
 \usepackage[subfigure]{tocloft}
 \usepackage{amsmath}
-\usepackage{caption, tabularx, array, etoolbox}
-\usepackage[backend=biber, style=numeric, maxnames=3, minnames=3]{biblatex}
+\usepackage{caption, tabularx, array, etoolbox, multirow}
+\usepackage{chngcntr}
+\usepackage{appendix}
+\usepackage[backend=biber, style=numeric, sorting=none, maxnames=3, minnames=3]{biblatex}
 \addbibresource{contents/references.bib}
 
 
 % document class settings
 
+\usepackage[table]{xcolor}
+% \usepackage{longtable}
+
+\usepackage{float}
+\usepackage{listings}
+
+% flush settings
+\raggedbottom
+
+
+% document class settings
 \geometry{
-  left=72pt,
-  right=72pt,
-  bindingoffset=0cm
+  left=25mm,
+  right=25mm,
+  bindingoffset=0cm,
 }
 
+\setlength{\parskip}{0pt}
 \setcounter{secnumdepth}{4}
 
 \titleformat{\paragraph}[block]{\zihao{-4}\heiti}{\theparagraph}{1em}{}
@@ -54,15 +69,20 @@
 \renewcommand{\contentsname}{\hfill \heiti 目录 \hfill}
 
 
-% title settings
-\titleformat{\section}[block]
-{\centering\fontsize{18pt}{16pt}\heiti}
-{第\chinese{section}章\hspace{1em}}
+% section settings
+\titleformat{name=\section,numberless}[block]
+{\centering\fontsize{18pt}{16pt}\selectfont\heiti}
+{}
 {0pt}
 {\vspace{0.5\baselineskip}\hspace{-0.5em}}
 \titlespacing{\section}{0pt}{0.5\baselineskip}{0.5\baselineskip}
 
-\renewcommand{\sectionmark}[1]{\markboth{第\chinese{section}章\hspace{0.5em}#1}{}}
+\titleformat{\section}[block]
+{\centering\fontsize{18pt}{16pt}\selectfont\heiti}
+{第\chinese{section}章\hspace{1em}}
+{0pt}
+{\vspace{0.5\baselineskip}\hspace{-0.5em}}
+\titlespacing{\section}{0pt}{0.5\baselineskip}{0.5\baselineskip}
 
 \ctexset {
     section = {
@@ -74,14 +94,14 @@
 
 % subsection settings
 \titleformat{\subsection}
-{\bfseries\fontsize{15pt}{12pt}\heiti}
+{\bfseries\fontsize{15pt}{12pt}\selectfont\heiti}
 {\normalfont\thesubsection}{0.5em}{}
 \titlespacing{\subsection}{0pt}{0.5\baselineskip}{0.5\baselineskip}
 
 
 % subsubsection settings
 \titleformat{\subsubsection}
-{\bfseries\fontsize{14pt}{12pt}\heiti}
+{\bfseries\fontsize{14pt}{12pt}\selectfont\heiti}
 {\normalfont\thesubsubsection}{0.5em}{}
 
 
@@ -91,10 +111,12 @@
 
 % font settings
 \setmainfont{Times New Roman}
-\setCJKmainfont{SimSun}
+
+% if you are using a Windows:
+% \setCJKmainfont{SimSun}
 
 % if you are using a macOS 14:
-% \setCJKmainfont{STSongti-SC-Light} 
+\setCJKmainfont{STSongti-SC-Light}
 
 
 % page head and foot settings
@@ -105,9 +127,9 @@
 \fancyhead[CO]{\leftmark}
 \fancyhead[CE]{华南理工大学学士学位论文}
 
-\renewcommand{\headrulewidth}{0.4pt}
-
 \setlength{\headheight}{14.5pt}
+
+\renewcommand{\headrulewidth}{0.4pt}
 
 
 % equation settings
@@ -126,11 +148,47 @@
 
 
 % figure settings
+\counterwithin{figure}{section}
 \renewcommand{\thefigure}{\thesection.\arabic{figure}}
 \captionsetup[figure]{font={tablefontsize}}
 \captionsetup[figure]{labelsep=space}
 \renewcommand\thesubfigure{\alph{subfigure})}
 
+
+% list code settings
+\DeclareCaptionLabelFormat{myformat}{图 \Alph{subsection}.#2}
+\captionsetup[lstlisting]{labelformat=myformat}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    lineskip=0.5pt,
+    columns=fullflexible,
+}
+\lstset{style=mystyle}
+
+
+% personal preferences
+\newcommand{\np}{NumPy}
 
 
 \begin{document}
@@ -152,8 +210,8 @@
 \input{contents/tableofcontents.tex}
 
 \input{contents/body/chap1_introduction.tex}
-\input{contents/body/chap2_basics.tex}
-\input{contents/body/chap3_algorithms.tex}
+\input{contents/body/chap2_related-works.tex}
+\input{contents/body/chap3_methods.tex}
 \input{contents/body/chap4_experiments.tex}
 \input{contents/body/conclusion.tex}
 
@@ -161,6 +219,7 @@
 \addcontentsline{toc}{section}{参考文献}
 \newpage
 
+\input{contents/appendix.tex}
 \input{contents/acknowledgements.tex}
 
 \end{document}

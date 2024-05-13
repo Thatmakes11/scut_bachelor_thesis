@@ -1,0 +1,28 @@
+\begin{appendices}
+    \section*{附录}
+    \addcontentsline{toc}{section}{附录} % Add appendix to table of contents
+    
+    \markboth{附录}{}
+    
+    \renewcommand{\thesubsection}{\Alph{subsection}} % Customize subsection numbering
+    \setcounter{table}{0}
+    \renewcommand{\thetable}{\thesubsection.\arabic{table}}
+    
+    \subsection{\np\ code}
+    Cross entropy loss \np\ pesudo code:
+    \begin{figure}[H]
+    \centering
+    \begin{lstlisting}[language=Python, caption={Cross Entropy Loss}, label={lst:loss}]
+    def cross_entropy_loss(y, y_hat):
+
+        # y: true label
+        # y_hat: predicted label
+        # return: cross entropy loss
+
+        return -np.sum(y * np.log(y_hat))
+    \end{lstlisting}
+    \end{figure}
+\end{appendices}
+    
+    \newpage
+    
